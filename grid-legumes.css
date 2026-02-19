@@ -1,61 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
-
-
-  :root {
-    --caveat-font-family: 'Caveat', cursive;
-    --tajawal-font-family: 'Tajawal', sans-serif;
-  }
-
+:root {
+  --caveat-font-family: 'Caveat', cursive;
+  --tajawal-font-family: 'Tajawal', sans-serif;
+  --main-clr: rgb(21, 21, 42);
+  --orange-clr: rgb(230, 141, 109); 
+  --blue-clr: blue;
+  --light-clr: rgb(251, 231, 223);
+}
 
 html {
   background-image: url("images/pattern_seamless.jpg");
   background-repeat: repeat;
   background-size: 350px;
-  /* background-color: rgb(203, 203, 203, 0.7); */
 }
 
 body {
   margin: 0;
   display: grid;
-  grid-template-rows: 10em 60vh auto 24em;
+  grid-template-rows: /* 10em */auto 70vh auto 24em;
   grid-template-columns: 1fr 5fr 2fr 1fr;
   grid-template-areas: 
   "header header header header"
   "hero hero hero hero"
   ". main sidebar ."
   "footer footer footer footer"; 
+  color: var(--main-clr);
 }
 
 header, footer {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-header {
-  grid-area: header;
-  padding-left:1rem;
-  padding-right: 1rem;
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  background-color: rgb(55, 101, 147, 0.85);
 }
 
-header div {
+header {
+  grid-area: header;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid var(--main-clr);
+}
+
+.header-description {
   font-family: var(--caveat-font-family);
   font-size: 3.6rem;
   font-weight: 600;
+  color: var(--light-clr);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   text-align: center;
+  max-width: 1300px;
+  margin-inline: auto;
 }
 
 .hero {
   grid-area: hero;
   position: relative;
+  border-bottom: 1px solid var(--main-clr);
 }
+
 .hero::before{
   content: ''; 
-  background: linear-gradient(rgb(0, 0, 0, 0.4) 10%, rgba(255, 124, 146, 0.3));
+  background: linear-gradient(rgba(54, 48, 138, 0.3) 10%, rgba(255, 148, 124, 0.2));
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
-.legumes-here {
+
+/* .legumes-here {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,100 +75,113 @@ header div {
   font-size: 2.5rem;
   color: rgb(255, 226, 226);
   text-shadow: 1px 1px 4px black;
-}
+} */
+
 .bg-img {
   width: 100%;
-  height: 60vh;
+  height: 70vh;
   object-fit: cover;
-  
 }
-.main-content {
-  outline: 2px solid teal;
-}
+
 .main {
-  /* background-color: lightsalmon; */
   grid-area: main;
   margin-top: 2rem;
 }
+
+.card {
+  display: grid;
+  /* grid-template-columns: 2fr 3fr; */
+  grid-template-columns: auto 1fr;
+  grid-template-rows: min-content auto;
+  grid-template-areas: 
+  "img title"
+  "img content";
+  border-radius: 10px;
+  background-color: var(--light-clr);
+  overflow: hidden;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 7px 1px rgb(52, 52, 52, 0.4);
+}
+
+.card:nth-child(1),
+.card:nth-child(2) {
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  padding: 1rem 0 0;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: var(--tajawal-font-family);
+}
+
+.card article {
+  padding: 0 2rem 1rem;
+  font-size: 1.1rem;
+}
+
+.card article p {
+  margin-top: 0.1em;
+}
+
+.img {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  object-fit: cover;
+  grid-area: img;
+}
+
+.title {
+  grid-area: title;
+}
+
+.content {
+  grid-area: content;
+}
+
+.content p {
+  font-family: var(--tajawal-font-family);
+}
+
 .sidebar {
-  background-color: coral;
+  background-color: var(--orange-clr);
   grid-area: sidebar;
   margin-top: 2rem;
   font-family: var(--tajawal-font-family);
   padding: 1.2em;
   margin-left: 0.8em;
 }
+
 .sidebar h2 {
   font-size: 1.2rem;
 }
+
 .sidebar div {
   font-size: 1.2rem;
   margin-bottom: 1em;
   font-weight: 500;
   cursor: pointer;
-  
 }
+
 .sidebar div:hover {
   color: green;
   cursor: pointer;
 }
+
 button:hover {
   cursor: pointer !important;
-  
   pointer-events: auto;
-
-}
-.card {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: min-content auto;
-  grid-template-areas: 
-  "img title"
-  "img content";
-  border-radius: 10px;
-  background-color: rgba(224, 224, 224, 0.9);
-  overflow: hidden;
-  border: 1px solid gray;
-  box-shadow: 5px 5px 7px 1px rgb(52, 52, 52, 0.4);
-}
-.card:nth-child(1),
-.card:nth-child(2) {
-  margin-bottom: 1rem;
-}
-.card h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: center;
-  font-family: var(--tajawal-font-family);
-}
-.card article {
-  padding: 1em;
-}
-.card article p {
-  margin-top: 0.1em;
-}
-.img {
-  max-width: 220px;
-  width: 100%;
-  aspect-ratio: 1/1.5;
-  object-fit: cover;
-  grid-area: img;
-}
-.title {
-  grid-area: title;
-}
-.content {
-  grid-area: content;
-}
-.content p {
-  font-family: var(--tajawal-font-family);
 }
 
 footer {
   grid-area: footer;
   margin-top: 2rem;
   padding: 1.7em;
+  border-top: 1px solid var(--main-clr);
 }
+
 footer section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,15 +192,18 @@ footer section {
   max-width: 80%;
   position: relative;
 }
+
 .google-map iframe {
   position: absolute;
   width: 100%;
   left: 0;
   top:0;
 }
+
 .place-description {
   font-family: var(--tajawal-font-family);
 }
+
 /* https://www.tripadvisor.com/Restaurant_Review-g189852-d3478764-Reviews-Legumes-Stockholm.html */
 
 /* https://www.everydayhealth.com/diet-nutrition/legumes-types-health-benefits-nutrition-facts-cooking-methods-and-more/ */
